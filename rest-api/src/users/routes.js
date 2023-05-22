@@ -12,15 +12,16 @@ const { hashThePassword, comparePasswords, validateEmail, tokenCheck } = require
 userRouter.post("/users/register", validateEmail, hashThePassword, registerUser);
 // Creates the end point /users/register for a HTTP POST request and causes it to run registerUser
 
+// added login function to allow the users to login
 userRouter.post("/users/login", comparePasswords, login)
 
-// READ
+// added the READ users function
 userRouter.get("/users/readUsers",tokenCheck, readUsers) // protected route
 
-//UPDATE
+// added the UPDATE function to allow for details to be updated
 userRouter.put("/users/update", updateUser)
 
-//DELETE
+//added the DELETE function to allow users to delete accounts from the database
 userRouter.delete("/users/delete", deleteUser)
 
 

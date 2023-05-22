@@ -24,7 +24,7 @@ async function registerUser(req,res) {
 
 async function login (req,res){
     try {
-        // To Generate token we need t 2 sections of information the secret key and user id
+        // To Generate token we need to 2 sections of information the secret key and user id
         //user id can be accessed from the req.userInfo object
 
         const token = await jwt.sign({id: req.userInfo._id}, process.env.SECRET_KEY)
