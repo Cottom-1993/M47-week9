@@ -16,8 +16,10 @@ userRouter.post("/users/register", validateEmail, hashThePassword, registerUser)
 userRouter.post("/users/login", comparePasswords, login)
 
 // added the READ users function
-userRouter.get("/users/readUsers",tokenCheck, readUsers) // protected route
+userRouter.get("/users/readUsers", readUsers) // protected route
 
+//auth check 
+userRouter.get ("/users/authCheck", tokenCheck, login)
 // added the UPDATE function to allow for details to be updated
 userRouter.put("/users/update", updateUser)
 

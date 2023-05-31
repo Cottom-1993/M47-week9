@@ -24,9 +24,23 @@ async function registerUser(req,res) {
 
 async function login (req,res){
     try {
-        // To Generate token we need to 2 sections of information the secret key and user id
-        //user id can be accessed from the req.userInfo object
+       // persistant Login
+       // if req.authuser object exists,
+        if (req.authUser) {
+            res.status(200).send({
+                message: "success", 
+            user: {
+                user: req.authUser.username, 
+                email:req.authUser.email
+            }
+        })
+        return
+    }
+    //Manual login
+    // To generate Token we need 2 bits of information the secret key and user id
+    // user id can be accessed from the req.userInfo object
 
+    // token only needs to be generated when a user manually logs inour app
         const token = await jwt.sign({id: req.userInfo._id}, process.env.SECRET_KEY)
        
         res.status(200).send({message: "Success", user: req.body.username, token: token})
